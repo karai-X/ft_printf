@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd_cnt.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karai <karai@student.42tokyo.jp>           +#+  +:+       +#+        */
+/*   By: karai <karai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 08:39:33 by karai             #+#    #+#             */
-/*   Updated: 2024/11/03 08:40:24 by karai            ###   ########.fr       */
+/*   Updated: 2024/11/24 14:23:12 by karai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	ft_putchar_fd_cnt(char c, int fd, int *cnt)
 {
-	write(fd, &c, fd);
-	*cnt += 1;
+	int	temp;
+
+	temp = write(fd, &c, fd);
+	if (temp == -1 || *cnt == -1)
+		*cnt = -1;
+	else
+		*cnt += 1;
 }
 
 void	ft_putstr_fd_cnt(char *s, int fd, int *cnt)

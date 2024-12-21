@@ -13,14 +13,13 @@ LIBFT_PATH = ./libft
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-		cp $(LIBFT_PATH)/$(LIBFT) $(NAME)
-		ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT_PATH)/$(LIBFT)
+		ar rcs $@ $^
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
+$(LIBFT_PATH)/$(LIBFT):
 		make -C $(LIBFT_PATH) all
 
 clean:
